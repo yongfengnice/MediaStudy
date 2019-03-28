@@ -44,8 +44,10 @@ public class AudioActivity extends FragmentActivity {
       @Override
       public void run() {
         super.run();
-        mPcmRecorder.stopRecord();
-        mPcmRecorder.pcmToWav();
+        if (mPcmRecorder != null) {
+          mPcmRecorder.stopRecord();
+          mPcmRecorder.pcmToWav();
+        }
       }
     }.start();
   }
