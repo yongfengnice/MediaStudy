@@ -1,5 +1,6 @@
 package com.suyf.mediastudy.audio.record;
 
+import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder.AudioSource;
 
@@ -38,6 +39,10 @@ public class PcmRecorder {
     private AudioRecord mAudioRecord;
     private boolean mRecording = false;
     private String mPcmFileName;
+
+    public PcmRecorder(String pcmFileName) {
+        this(22050, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, pcmFileName);
+    }
 
     public PcmRecorder(int sampleRateInHz, int channelConfig, int audioFormat, String pcmFileName) {
         mSampleRateInHz = sampleRateInHz;

@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical">
-  <Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="startRecord"
-    android:text="start record"
-    android:textAllCaps="false"/>
-  <Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:onClick="stopRecord"
-    android:text="stop record"
-    android:textAllCaps="false"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startRecord"
+        android:text="start record pcm"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="stopRecord"
+        android:text="stop record pcm"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="staticTrackPcm"
+        android:text="MODE_STATIC模式播放pcm"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="streamTrackPcm"
+        android:text="MODE_STREAM模式播放pcm"
+        android:textAllCaps="false"/>
 </LinearLayout>

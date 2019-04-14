@@ -1,16 +1,18 @@
 package com.suyf.mediastudy.audio;
 
 import android.Manifest;
-import android.media.AudioFormat;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
 import com.suyf.mediastudy.R;
 import com.suyf.mediastudy.audio.record.PcmRecorder;
+import com.suyf.mediastudy.audio.track.PcmStaticTracker;
+import com.suyf.mediastudy.audio.track.PcmStreamTracker;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -28,6 +30,7 @@ public class AudioActivity extends FragmentActivity {
     public void startRecord(View view) {
         Dexter.withActivity(this)
                 .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.RECORD_AUDIO
                 ).withListener(new BaseMultiplePermissionsListener() {
@@ -49,8 +52,7 @@ public class AudioActivity extends FragmentActivity {
 
                 mPcmFileName = Environment.getExternalStorageDirectory().getAbsolutePath()
                         + "/" + "audio_record_pcm_file.pcm";
-                mPcmRecorder = new PcmRecorder(11025, AudioFormat.CHANNEL_IN_MONO,
-                        AudioFormat.ENCODING_PCM_16BIT, mPcmFileName);
+                mPcmRecorder = new PcmRecorder(mPcmFileName);
                 mPcmRecorder.startRecord();
             }
         }.start();
@@ -72,4 +74,35 @@ public class AudioActivity extends FragmentActivity {
         }.start();
     }
 
+    public void staticTrackPcm(View view) {
+        if (mPcmFileName == null) {
+            Toast.makeText(this, "请先录制pcm数据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                PcmStaticTracker tracker = new PcmStaticTracker(mPcmFileName);
+                tracker.startTrack();
+                tracker.stopTrack();
+            }
+        }.start();
+    }
+
+    public void streamTrackPcm(View view) {
+        if (mPcmFileName == null) {
+            Toast.makeText(this, "请先录制pcm数据", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                PcmStreamTracker tracker = new PcmStreamTracker(mPcmFileName);
+                tracker.startTrack();
+                tracker.stopTrack();
+            }
+        }.start();
+    }
 }

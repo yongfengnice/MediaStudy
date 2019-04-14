@@ -24,8 +24,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    implementation libraries.android_support.support_v4
-    implementation libraries.android_support.appcompat_v7
     implementation 'com.karumi:dexter:5.0.0'
 }
