@@ -1,11 +1,12 @@
+apply from: '../script/dependecies.gradle'
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdkVersion
     defaultConfig {
         applicationId "com.suyf.mediastudy"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -16,17 +17,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = versions.java
+        targetCompatibility = versions.java
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     testImplementation 'junit:junit:4.12'
-
-    implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.0"
-    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0"
+    implementation libraries.android_support.support_v4
+    implementation libraries.android_support.appcompat_v7
+    implementation 'com.karumi:dexter:5.0.0'
 }
